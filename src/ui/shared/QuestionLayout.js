@@ -2,8 +2,11 @@ import styled from "@emotion/styled";
 import {scalePx} from "../../utils/scalePx";
 import {useSizeRatio} from "../../hooks/useSizeRatio";
 import {Button} from "./Button";
+import {Text} from "./Text";
 import {GlassPanel} from "./GlassPanel";
 import {motion} from "framer-motion";
+import {SelectionTextList} from "./SelectionTextList";
+import {SelectionBoxList} from "./SelectionBoxList";
 
 const WrapperStyled = styled(motion.div)`
     display: flex;
@@ -28,23 +31,71 @@ const PanelStyled = styled(GlassPanel)`
     padding: ${({sizeRatio}) => `${scalePx(20, sizeRatio)} ${scalePx(18, sizeRatio)}`};
 `
 
+const PanelTitleStyled = styled(Text)`
+    text-align: ${({center}) => center ? 'center' : 'left'};
+    text-transform: uppercase;
+    white-space: pre-wrap;
+`
+
+const PanelTextOptionsStyled = styled(SelectionTextList)`
+    margin-top: ${({sizeRatio}) => scalePx(24, sizeRatio)};
+`
+
+const PanelBoxOptionsStyled = styled(SelectionBoxList)`
+    margin-top: ${({sizeRatio}) => scalePx(24, sizeRatio)};
+`
+
 const ButtonWrapperStyled = styled.div`
     margin-top: ${({sizeRatio}) => scalePx(12, sizeRatio)};
     padding: ${({sizeRatio}) => `0 ${scalePx(20, sizeRatio)} ${scalePx(32, sizeRatio)}`};
 `
 
 export function QuestionLayout(props) {
-    const {content, questionContent, onSelect, ...rest} = props;
+    const {
+        title,
+        center,
+        size = 'm',
+        view = 'text',
+        options,
+        multi,
+        value,
+        onChange,
+        onSubmit,
+        children,
+        ...rest
+    } = props;
     const sizeRatio = useSizeRatio();
+
+    const PanelOptionsStyled = view === 'box' ? PanelBoxOptionsStyled : PanelTextOptionsStyled;
 
     return (
         <WrapperStyled sizeRatio={sizeRatio} {...rest}>
-            <ContentWrapperStyled sizeRatio={sizeRatio}>{content}</ContentWrapperStyled>
+            <ContentWrapperStyled sizeRatio={sizeRatio}>
+                {children}
+            </ContentWrapperStyled>
             <PanelWrapperStyled sizeRatio={sizeRatio}>
-                <PanelStyled sizeRatio={sizeRatio}>{questionContent}</PanelStyled>
+                <PanelStyled sizeRatio={sizeRatio}>
+                    <PanelTitleStyled
+                        sizeRatio={sizeRatio}
+                        center={center}
+                        size={size}
+                        bold
+                    >
+                        {title}
+                    </PanelTitleStyled>
+                    {!!options?.length && (
+                        <PanelOptionsStyled
+                            sizeRatio={sizeRatio}
+                            value={value}
+                            options={options}
+                            multi={multi}
+                            onChange={onChange}
+                        />
+                    )}
+                </PanelStyled>
             </PanelWrapperStyled>
             <ButtonWrapperStyled sizeRatio={sizeRatio}>
-                <Button onClick={onSelect}>Выбрать</Button>
+                <Button onClick={onSubmit}>Выбрать</Button>
             </ButtonWrapperStyled>
         </WrapperStyled>
     )

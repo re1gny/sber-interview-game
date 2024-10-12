@@ -3,6 +3,10 @@ import {Intro} from "./screens/Intro";
 import {GenderSelector} from "./screens/GenderSelector";
 import {EducationSelector} from "./screens/EducationSelector";
 import {FormatSelector} from "./screens/FormatSelector";
+import {SkillsSelector} from "./screens/SkillsSelector";
+import {TrackSelector} from "./screens/TrackSelector";
+import {Interview} from "./screens/Interview";
+import {Final} from "./screens/Final";
 import {SCREEN_BACKGROUND, SCREEN_NAME} from "../constants/screens";
 import {useProgress} from "../hooks/useProgress";
 import styled from "@emotion/styled";
@@ -15,6 +19,10 @@ const SCREENS = {
     [SCREEN_NAME.GenderSelector]: GenderSelector,
     [SCREEN_NAME.EducationSelector]: EducationSelector,
     [SCREEN_NAME.FormatSelector]: FormatSelector,
+    [SCREEN_NAME.SkillsSelector]: SkillsSelector,
+    [SCREEN_NAME.TrackSelector]: TrackSelector,
+    [SCREEN_NAME.Interview]: Interview,
+    [SCREEN_NAME.Final]: Final,
 };
 
 const WrapperStyled = styled.div`

@@ -33,6 +33,7 @@ const OptionStyled = styled.div`
 
 const OptionTextStyled = styled(Text)`
     text-align: center;
+    white-space: pre-wrap;
 `
 
 export function SelectionBoxList(props) {

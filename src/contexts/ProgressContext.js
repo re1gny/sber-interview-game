@@ -8,6 +8,7 @@ export const INITIAL_STATE = {
     format: null,
     skills: [],
     track: null,
+    points: 0,
 };
 
 export const ProgressContext = createContext(INITIAL_STATE);

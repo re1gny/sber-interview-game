@@ -23,6 +23,7 @@ const OptionStyled = styled.div`
 `
 
 const OptionSignStyled = styled.div`
+    flex-shrink: 0;
     width: ${({sizeRatio}) => scalePx(20, sizeRatio)};
     height: ${({sizeRatio}) => scalePx(20, sizeRatio)};
     border-radius: ${({sizeRatio}) => scalePx(5, sizeRatio)};
@@ -32,6 +33,7 @@ const OptionSignStyled = styled.div`
 
 const OptionTextStyled = styled(Text)`
     margin-left: ${({sizeRatio}) => scalePx(20, sizeRatio)};
+    white-space: pre-wrap;
 `
 
 export function SelectionTextList(props) {

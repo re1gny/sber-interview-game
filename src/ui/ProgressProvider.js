@@ -11,6 +11,7 @@ export function ProgressProvider(props) {
     const [format, setFormat] = useState(INITIAL_STATE.format);
     const [skills, setSkills] = useState(INITIAL_STATE.skills);
     const [track, setTrack] = useState(INITIAL_STATE.track);
+    const [points, setPoints] = useState(INITIAL_STATE.points);
 
     const next = () => {
         const nextScreen = NEXT_SCREEN[screen];
@@ -18,6 +19,10 @@ export function ProgressProvider(props) {
         if (nextScreen) {
             setScreen(nextScreen);
         }
+    }
+
+    const addPoints = () => {
+        setPoints(prev => prev + 1);
     }
 
     const value = {
@@ -33,6 +38,8 @@ export function ProgressProvider(props) {
         setSkills,
         track,
         setTrack,
+        points,
+        addPoints,
     };
 
     return (

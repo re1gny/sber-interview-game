@@ -113,10 +113,11 @@ const SkillImageStyled = styled(motion.img)`
 
 const BackgroundImageStyled = styled(motion.img)`
     position: absolute;
-    top: 0;
+    top: 50%;
     left: 0;
     width: 100%;
     height: auto;
+    transform: translateY(-50%);
 `
 
 function getBackgroundImage(track, final) {

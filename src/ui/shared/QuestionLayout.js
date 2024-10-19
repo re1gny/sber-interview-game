@@ -30,7 +30,7 @@ const PanelWrapperStyled = styled.div`
 `
 
 const PanelStyled = styled(GlassPanel)`
-    padding: ${({sizeRatio}) => `${scalePx(20, sizeRatio)} ${scalePx(18, sizeRatio)}`};
+    padding: ${({sizeRatio}) => `${scalePx(14, sizeRatio)} ${scalePx(18, sizeRatio)}`};
 `
 
 const PanelTitleStyled = styled(Text)`
@@ -40,15 +40,15 @@ const PanelTitleStyled = styled(Text)`
 `
 
 const PanelTextOptionsStyled = styled(SelectionTextList)`
-    margin-top: ${({sizeRatio}) => scalePx(24, sizeRatio)};
+    margin-top: ${({sizeRatio}) => scalePx(14, sizeRatio)};
 `
 
 const PanelBoxOptionsStyled = styled(SelectionBoxList)`
-    margin-top: ${({sizeRatio}) => scalePx(24, sizeRatio)};
+    margin-top: ${({sizeRatio}) => scalePx(14, sizeRatio)};
 `
 
 const ButtonWrapperStyled = styled.div`
-    margin-top: ${({sizeRatio}) => scalePx(12, sizeRatio)};
+    margin-top: ${({sizeRatio}) => scalePx(14, sizeRatio)};
     padding: ${({sizeRatio}) => `0 ${scalePx(20, sizeRatio)} ${scalePx(32, sizeRatio)}`};
 `
 

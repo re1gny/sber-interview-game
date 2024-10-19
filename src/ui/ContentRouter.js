@@ -7,12 +7,13 @@ import {SkillsSelector} from "./screens/SkillsSelector";
 import {TrackSelector} from "./screens/TrackSelector";
 import {Interview} from "./screens/Interview";
 import {Final} from "./screens/Final";
-import {SCREEN_BACKGROUND, SCREEN_NAME} from "../constants/screens";
+import {NEXT_SCREEN, SCREEN_BACKGROUND, SCREEN_IMAGES, SCREEN_NAME} from "../constants/screens";
 import {useProgress} from "../hooks/useProgress";
 import styled from "@emotion/styled";
 import {scalePx} from "../utils/scalePx";
 import Logo from "../assets/images/logo.svg";
 import {useSizeRatio} from "../hooks/useSizeRatio";
+import {useImagePreloader} from "../hooks/useImagePreloader";
 
 const SCREENS = {
     [SCREEN_NAME.Intro]: Intro,
@@ -54,7 +55,10 @@ export function ContentRouter() {
     const sizeRatio = useSizeRatio();
     const {screen} = useProgress();
 
+    const nextScreen = NEXT_SCREEN[screen];
     const Component = SCREENS[screen];
+
+    useImagePreloader(SCREEN_IMAGES[nextScreen]);
 
     return (
         <WrapperStyled sizeRatio={sizeRatio} screen={screen}>

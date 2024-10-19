@@ -21,6 +21,8 @@ const ContentWrapperStyled = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    min-height: 0;
 `
 
 const PanelWrapperStyled = styled.div`

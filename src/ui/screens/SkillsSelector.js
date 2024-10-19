@@ -3,6 +3,14 @@ import {scalePx} from "../../utils/scalePx";
 import {useSizeRatio} from "../../hooks/useSizeRatio";
 import {useProgress} from "../../hooks/useProgress";
 import {QuestionLayout} from "../shared/QuestionLayout";
+import {PersonConstructor} from "../PersonConstructor";
+
+const PersonConstructorWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    padding: ${({sizeRatio}) => `${scalePx(68, sizeRatio)} ${scalePx(27, sizeRatio)} ${scalePx(14, sizeRatio)}`};
+`;
 
 export function SkillsSelector() {
     const sizeRatio = useSizeRatio();
@@ -34,6 +42,10 @@ export function SkillsSelector() {
             multi
             onChange={setSkills}
             onSubmit={handleNext}
-        />
+        >
+            <PersonConstructorWrapper sizeRatio={sizeRatio}>
+                <PersonConstructor />
+            </PersonConstructorWrapper>
+        </QuestionLayout>
     )
 }

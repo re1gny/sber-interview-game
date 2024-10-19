@@ -15,6 +15,7 @@ import {Modal} from "../shared/Modal";
 import {AnimatePresence, motion} from "framer-motion";
 import {Progress} from "../shared/Progress";
 import {POINTS_TOTAL} from "../../constants/rules";
+import {PersonConstructor} from "../PersonConstructor";
 
 const QUESTIONS_BY_TRACK = {
     development: DEVELOPMENT_QUESTIONS,
@@ -37,6 +38,13 @@ const ProgressStyled = styled(Progress)`
     top: ${({sizeRatio}) => scalePx(73, sizeRatio)};
     left: 50%;
     transform: translateX(-50%);
+`;
+
+const PersonConstructorWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    padding: ${({sizeRatio}) => `${scalePx(80, sizeRatio)} ${scalePx(27, sizeRatio)} ${scalePx(10, sizeRatio)}`};
 `;
 
 export function Interview() {
@@ -90,7 +98,11 @@ export function Interview() {
                     options={currentQuestion.answers.map(({id, label}) => ({value: id, label}))}
                     onChange={setCurrentValue}
                     onSubmit={handleAnswer}
-                />
+                >
+                    <PersonConstructorWrapper sizeRatio={sizeRatio}>
+                        <PersonConstructor variant={currentIndex} />
+                    </PersonConstructorWrapper>
+                </QuestionLayout>
             </AnimatePresence>
             <ProgressStyled sizeRatio={sizeRatio} value={points} total={POINTS_TOTAL} />
             <Modal

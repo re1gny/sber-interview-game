@@ -8,6 +8,7 @@ import {useProgress} from "../../hooks/useProgress";
 import {motion} from "framer-motion";
 import {POINTS_TO_WIN, POINTS_TOTAL} from "../../constants/rules";
 import {Progress} from "../shared/Progress";
+import {PersonConstructor} from "../PersonConstructor";
 
 const WrapperStyled = styled(motion.div)`
     display: flex;
@@ -22,6 +23,8 @@ const ContentWrapperStyled = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
+    min-height: 0;
+    padding: ${({sizeRatio}) => `${scalePx(80, sizeRatio)} ${scalePx(11, sizeRatio)} ${scalePx(14, sizeRatio)}`};
 `
 
 const PanelWrapperStyled = styled.div`
@@ -72,6 +75,7 @@ export function Final() {
         >
             <ContentWrapperStyled sizeRatio={sizeRatio}>
                 <ProgressStyled sizeRatio={sizeRatio} value={points} total={POINTS_TOTAL} />
+                <PersonConstructor final />
             </ContentWrapperStyled>
             <PanelWrapperStyled sizeRatio={sizeRatio}>
                 <PanelStyled sizeRatio={sizeRatio}>

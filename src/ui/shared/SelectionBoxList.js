@@ -23,6 +23,7 @@ const OptionStyled = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 100%;
     padding: ${({sizeRatio}) => `${scalePx(30, sizeRatio)} ${scalePx(20, sizeRatio)}`};
     border-radius: ${({sizeRatio}) => scalePx(12, sizeRatio)};
     background: #FFFFFF;

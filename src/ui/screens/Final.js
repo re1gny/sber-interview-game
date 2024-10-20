@@ -13,6 +13,7 @@ import {PersonConstructor} from "../PersonConstructor";
 const WrapperStyled = styled(motion.div)`
     display: flex;
     flex-direction: column;
+    align-items: center;
     justify-content: flex-end;
     height: 100%;
 `;
@@ -21,13 +22,13 @@ const ContentWrapperStyled = styled.div`
     flex-grow: 1;
     position: relative;
     display: flex;
-    flex-direction: column;
-    justify-content: center;
+    width: 100%;
     min-height: 0;
     padding: ${({sizeRatio}) => `${scalePx(80, sizeRatio)} ${scalePx(11, sizeRatio)} ${scalePx(14, sizeRatio)}`};
 `
 
 const PanelWrapperStyled = styled.div`
+    width: 100%;
     padding: ${({sizeRatio}) => `0 ${scalePx(20, sizeRatio)}`};
 `
 
@@ -41,6 +42,7 @@ const PanelTextStyled = styled(Text)`
 `
 
 const ButtonWrapperStyled = styled.div`
+    width: 100%;
     margin-top: ${({sizeRatio}) => scalePx(12, sizeRatio)};
     padding: ${({sizeRatio}) => `0 ${scalePx(20, sizeRatio)} ${scalePx(32, sizeRatio)}`};
 `

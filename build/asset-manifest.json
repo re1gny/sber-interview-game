@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.js": "./static/js/main.b6b98bb2.js",
+    "main.js": "./static/js/main.915914dc.js",
     "static/media/Inter-Regular.ttf": "./static/media/Inter-Regular.4f9a0a6f83e459cbfe69.ttf",
     "static/media/intro-image.png": "./static/media/intro-image.e8b91a7abd12e04838f1.png",
     "static/media/SB-Sans-Text-Bold.ttf": "./static/media/SB-Sans-Text-Bold.b37057d24eeea039750a.ttf",
@@ -49,9 +49,9 @@
     "static/media/книги (для студента).png": "./static/media/книги (для студента).d28f19adac9a9abcb58c.png",
     "static/media/logo.svg": "./static/media/logo.41a12782fd3b8898bb5ac8dfde282fa4.svg",
     "index.html": "./index.html",
-    "main.b6b98bb2.js.map": "./static/js/main.b6b98bb2.js.map"
+    "main.915914dc.js.map": "./static/js/main.915914dc.js.map"
   },
   "entrypoints": [
-    "static/js/main.b6b98bb2.js"
+    "static/js/main.915914dc.js"
   ]
 }

@@ -13,7 +13,6 @@ import {PersonConstructor} from "../PersonConstructor";
 const WrapperStyled = styled(motion.div)`
     display: flex;
     flex-direction: column;
-    align-items: center;
     justify-content: flex-end;
     height: 100%;
 `;
@@ -22,10 +21,18 @@ const ContentWrapperStyled = styled.div`
     flex-grow: 1;
     position: relative;
     display: flex;
-    width: 100%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     min-height: 0;
-    padding: ${({sizeRatio}) => `${scalePx(80, sizeRatio)} ${scalePx(11, sizeRatio)} ${scalePx(14, sizeRatio)}`};
 `
+
+const PersonConstructorWrapper = styled.div`
+    display: flex;
+    width: 100%;
+    max-height: 100%;
+    padding: ${({sizeRatio}) => `${scalePx(80, sizeRatio)} ${scalePx(11, sizeRatio)} ${scalePx(14, sizeRatio)}`};
+`;
 
 const PanelWrapperStyled = styled.div`
     width: 100%;
@@ -65,7 +72,7 @@ export function Final() {
         : 'Таким кандидатом тебя увидел интервьюер — классным специалистом, которому пока немного не\xa0хватает знаний. Попробуй пройти тренажёр собеседования снова, учитывая свои ошибки. \n\nТеперь ты готов к\xa0прохождению технических интервью! А\xa0если мечтаешь попасть на\xa0стажировку в\xa0Сбер, то скорее переходи по\xa0ссылке и\xa0оставляй заявку!';
 
     const handleGoToInternship = () => {
-        window.open('#', '_blank');
+        window.open('https://sbergraduate.ru/sberseasons-2025?utm_source=fut&utm_medium=it-site&utm_campaign=game', '_blank');
     };
 
     return (
@@ -77,7 +84,9 @@ export function Final() {
         >
             <ContentWrapperStyled sizeRatio={sizeRatio}>
                 <ProgressStyled sizeRatio={sizeRatio} value={points} total={POINTS_TOTAL} />
-                <PersonConstructor final />
+                <PersonConstructorWrapper sizeRatio={sizeRatio}>
+                    <PersonConstructor final />
+                </PersonConstructorWrapper>
             </ContentWrapperStyled>
             <PanelWrapperStyled sizeRatio={sizeRatio}>
                 <PanelStyled sizeRatio={sizeRatio}>

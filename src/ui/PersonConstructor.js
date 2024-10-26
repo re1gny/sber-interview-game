@@ -1,7 +1,9 @@
+import {useRef} from "react";
 import {AnimatePresence, motion} from "framer-motion";
 import styled from "@emotion/styled";
 import {useProgress} from "../hooks/useProgress";
 import {useSizeRatio} from "../hooks/useSizeRatio";
+import {SizeRatioProvider} from "./SizeRatioProvider";
 import {scalePx} from "../utils/scalePx";
 
 import Image1 from "../assets/images/constructor/пол (до выбора места выбора работы).png";
@@ -54,6 +56,9 @@ import Image47 from "../assets/images/backgrounds/Frame 29-5.png";
 import Image48 from "../assets/images/backgrounds/Frame 29-6.png";
 import Image49 from "../assets/images/backgrounds/Frame 65.png";
 
+const PERSON_WIDTH = 347;
+const PERSON_HEIGHT = 320;
+
 const WrapperStyled = styled.div`
     position: relative;
     display: flex;
@@ -61,29 +66,25 @@ const WrapperStyled = styled.div`
     align-items: center;
     justify-content: center;
     width: 100%;
-    max-height: 100%;
+    height: 100%;
 `;
 
 const PersonWrapperStyled = styled.div`
     position: relative;
     display: flex;
-    width: auto;
-    height: auto;
+    width: ${({personSizeRatio}) => scalePx(PERSON_WIDTH, personSizeRatio)};
+    height: ${({personSizeRatio}) => scalePx(PERSON_HEIGHT, personSizeRatio)};
     max-width: 100%;
     max-height: 100%;
 `;
 
 const PersonImageStyled = styled(motion.img)`
-    position: relative;
-    max-width: 100%;
-    max-height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     object-fit: contain;
-    
-    & + & {
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
 `
 
 const SKILLS_AMOUNT_TO_WIDTH = {
@@ -243,54 +244,59 @@ export function PersonConstructor(props) {
     const {variant = 0, final} = props;
     const sizeRatio = useSizeRatio();
     const {gender, education, format, skills, track} = useProgress();
+    const wrapperRef = useRef();
 
     const personImages = getPersonImages(gender, education, format, skills, variant);
     const skillsImages = getSkillsImages(skills);
     const backgroundImage = getBackgroundImage(track, final);
 
     return (
-        <WrapperStyled sizeRatio={sizeRatio}>
-            <AnimatePresence>
-                <BackgroundImageStyled
-                    key={backgroundImage}
-                    src={backgroundImage}
-                    sizeRatio={sizeRatio}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                />
-            </AnimatePresence>
-            <PersonWrapperStyled sizeRatio={sizeRatio}>
-                <AnimatePresence>
-                    {personImages.map(image => (
-                        <PersonImageStyled
-                            key={image}
-                            src={image}
+        <SizeRatioProvider target={wrapperRef} targetWidth={PERSON_WIDTH} targetHeight={PERSON_HEIGHT}>
+            {(personSizeRatio) => (
+                <WrapperStyled ref={wrapperRef} sizeRatio={sizeRatio}>
+                    <AnimatePresence>
+                        <BackgroundImageStyled
+                            key={backgroundImage}
+                            src={backgroundImage}
                             sizeRatio={sizeRatio}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                         />
-                    ))}
-                </AnimatePresence>
-                <AnimatePresence>
-                    {skillsImages.length > 0 && (
-                        <SkillsWrapper sizeRatio={sizeRatio} totalAmount={skillsImages.length}>
-                            {skillsImages.map(image => (
-                                <SkillImageStyled
+                    </AnimatePresence>
+                    <PersonWrapperStyled sizeRatio={sizeRatio} personSizeRatio={personSizeRatio}>
+                        <AnimatePresence>
+                            {personImages.map(image => (
+                                <PersonImageStyled
                                     key={image}
                                     src={image}
                                     sizeRatio={sizeRatio}
-                                    layout
                                     initial={{ opacity: 0 }}
                                     animate={{ opacity: 1 }}
                                     exit={{ opacity: 0 }}
                                 />
                             ))}
-                        </SkillsWrapper>
-                    )}
-                </AnimatePresence>
-            </PersonWrapperStyled>
-        </WrapperStyled>
+                        </AnimatePresence>
+                        <AnimatePresence>
+                            {skillsImages.length > 0 && (
+                                <SkillsWrapper sizeRatio={sizeRatio} totalAmount={skillsImages.length}>
+                                    {skillsImages.map(image => (
+                                        <SkillImageStyled
+                                            key={image}
+                                            src={image}
+                                            sizeRatio={sizeRatio}
+                                            layout
+                                            initial={{ opacity: 0 }}
+                                            animate={{ opacity: 1 }}
+                                            exit={{ opacity: 0 }}
+                                        />
+                                    ))}
+                                </SkillsWrapper>
+                            )}
+                        </AnimatePresence>
+                    </PersonWrapperStyled>
+                </WrapperStyled>
+            )}
+        </SizeRatioProvider>
     )
 }

@@ -43,7 +43,7 @@ const ProgressStyled = styled(Progress)`
 const PersonConstructorWrapper = styled.div`
     display: flex;
     width: 100%;
-    max-height: 100%;
+    height: 100%;
     padding: ${({sizeRatio}) => `${scalePx(80, sizeRatio)} ${scalePx(27, sizeRatio)} ${scalePx(10, sizeRatio)}`};
 `;
 

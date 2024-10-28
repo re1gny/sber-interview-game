@@ -14,6 +14,7 @@ const WrapperStyled = styled(motion.div)`
     width: 100%;
     height: 100%;
     padding: ${({sizeRatio}) => `${scalePx(199, sizeRatio)} 0 ${scalePx(32, sizeRatio)}`};
+    transform: translate3d(0, 0, 0);
     z-index: 100;
 `;
 

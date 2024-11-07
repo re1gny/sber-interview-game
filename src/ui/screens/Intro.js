@@ -7,6 +7,7 @@ import {Button} from "../shared/Button";
 import {Text} from "../shared/Text";
 import {useProgress} from "../../hooks/useProgress";
 import {motion} from "framer-motion";
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 const WrapperStyled = styled(motion.div)`
     display: flex;
@@ -49,6 +50,11 @@ export function Intro() {
     const sizeRatio = useSizeRatio();
     const {next} = useProgress();
 
+    const handleNext = () => {
+        reachMetrikaGoal('start');
+        next();
+    }
+
     return (
         <WrapperStyled
             sizeRatio={sizeRatio}
@@ -64,7 +70,7 @@ export function Intro() {
                 <TextStyled sizeRatio={sizeRatio}>Каким сотрудником увидит тебя интервьюер? Зависит только от&nbsp;твоих ответов! Проходи собеседование и&nbsp;наблюдай, как трансформируется твой персонаж в&nbsp;зависимости от&nbsp;твоего выбора.</TextStyled>
             </TextsWrapperStyled>
             <ButtonWrapperStyled sizeRatio={sizeRatio}>
-                <Button onClick={next}>К интервью!</Button>
+                <Button onClick={handleNext}>К интервью!</Button>
             </ButtonWrapperStyled>
         </WrapperStyled>
     )

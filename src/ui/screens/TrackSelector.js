@@ -4,6 +4,7 @@ import {useSizeRatio} from "../../hooks/useSizeRatio";
 import {useProgress} from "../../hooks/useProgress";
 import {QuestionLayout} from "../shared/QuestionLayout";
 import {PersonConstructor} from "../PersonConstructor";
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 const PersonConstructorWrapper = styled.div`
     display: flex;
@@ -12,6 +13,14 @@ const PersonConstructorWrapper = styled.div`
     padding: ${({sizeRatio}) => `${scalePx(68, sizeRatio)} ${scalePx(27, sizeRatio)} ${scalePx(14, sizeRatio)}`};
 `;
 
+const TRACK_TO_METRIKA = {
+    development: 'dev',
+    analytics: 'analytics',
+    cybersecurity: 'cyber',
+    testing: 'test',
+    data: 'data',
+};
+
 export function TrackSelector() {
     const sizeRatio = useSizeRatio();
     const {track, setTrack, next} = useProgress();
@@ -19,6 +28,8 @@ export function TrackSelector() {
     const handleNext = () => {
         if (track) {
             next();
+            reachMetrikaGoal(TRACK_TO_METRIKA[track]);
+            reachMetrikaGoal('choice');
         }
     };
 

@@ -4,6 +4,7 @@ import {useSizeRatio} from "../../hooks/useSizeRatio";
 import {useProgress} from "../../hooks/useProgress";
 import {QuestionLayout} from "../shared/QuestionLayout";
 import {PersonConstructor} from "../PersonConstructor";
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 const PersonConstructorWrapper = styled.div`
     display: flex;
@@ -12,6 +13,11 @@ const PersonConstructorWrapper = styled.div`
     padding: ${({sizeRatio}) => `${scalePx(68, sizeRatio)} ${scalePx(27, sizeRatio)} ${scalePx(14, sizeRatio)}`};
 `;
 
+const EDUCATION_TO_METRIKA = {
+    student: 'student',
+    graduate: 'graduate',
+};
+
 export function EducationSelector() {
     const sizeRatio = useSizeRatio();
     const {education, setEducation, next} = useProgress();
@@ -19,6 +25,8 @@ export function EducationSelector() {
     const handleNext = () => {
         if (education) {
             next();
+            reachMetrikaGoal(EDUCATION_TO_METRIKA[education]);
+            reachMetrikaGoal('answer');
         }
     };
 

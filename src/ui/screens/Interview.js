@@ -16,6 +16,7 @@ import {AnimatePresence, motion} from "framer-motion";
 import {Progress} from "../shared/Progress";
 import {POINTS_TOTAL} from "../../constants/rules";
 import {PersonConstructor} from "../PersonConstructor";
+import {reachMetrikaGoal} from "../../utils/reachMetrikaGoal";
 
 const QUESTIONS_BY_TRACK = {
     development: DEVELOPMENT_QUESTIONS,
@@ -23,6 +24,14 @@ const QUESTIONS_BY_TRACK = {
     cybersecurity: CYBERSECURITY_QUESTIONS,
     testing: TESTING_QUESTIONS,
     data: DATA_QUESTIONS,
+};
+
+const TRACK_TO_METRIKA = {
+    development: 'fin-dev',
+    analytics: 'fin-analytics',
+    cybersecurity: 'fin-cyber',
+    testing: 'fin-test',
+    data: 'fin-data',
 };
 
 const WrapperStyled = styled(motion.div)`
@@ -76,6 +85,8 @@ export function Interview() {
             setCurrentIndex(prev => prev + 1);
         } else {
             next();
+            reachMetrikaGoal(TRACK_TO_METRIKA[track]);
+            reachMetrikaGoal('fin');
         }
     };
 
